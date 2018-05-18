@@ -1,55 +1,18 @@
-<div class="unit-table-wrapper">
-    <div class="input-group input-group-sm col-4">
-        <div class="input-group-prepend">
-            <span class="input-group-text">
-          <i class="fa fa-search" aria-hidden="true"></i>
-        </span>
-        </div>
-        <input type="text" name="query" class="form-control" placeholder="请输入报告名称进行查询..." [(ngModel)]="query" (keyup.enter)="getHistoryDetection(1, limit, query)">
-    </div>
-
-    <div class="unit-table">
-        <table class="table table-striped table-border">
-            <thead class="thead-default">
-                <tr>
-                    <th>姓名</th>
-                    <th>年龄</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of dataSet; let i=index; trackBy: trackById">
-                    <td>{{ item?.name }}</td>
-                    <td>{{ item?.age }}</td>
-                    <td>
-                        <span class="option-link" (click)="viewDetail(item.id)">查看</span>
-                    </td>
-                </tr>
-            </tbody>
-            <!-- <tbody *ngIf="!historyDetection?.result?.checkResultList || !historyDetection?.result?.checkResultList[0]">
-                <tr>
-                    <td colspan="5" class="text-center">
-                        查询结果为空...
-                    </td>
-                </tr>
-            </tbody> -->
-        </table>
-    </div>
-
-    <div class="unit-pagination">
-        <div class="d-inline-block">
-            <span>
-            共{{ dataSet.length }}条记录&nbsp;&nbsp;&nbsp;&nbsp;每页显示
-            <select size [(ngModel)]="pageSize" name="pageSize" (change)="changePage(1, pageSize, query)" id="inputState" required class="form-control d-inline-block" >
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-            </select>条
-        </span>
-        </div>
-        <div class="d-inline-block float-right pagination-sm">
-            <ngb-pagination (pageChange)="pageChanged($event)" [collectionSize]="dataSet.length" [(pageSize)]="pageSize" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
-        </div>
-    </div>
-</div>
+<unit-table [dataSet]="dataSet" [page]="page" [pageSize]="pageSize">
+    <thead class="thead-default">
+        <tr>
+            <th unitShowSort>姓名</th>
+            <th unitShowSort>年龄</th>
+            <th unitShowSort>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of dataSet; let i=index; trackBy: trackById">
+            <td>{{ item?.name }}</td>
+            <td>{{ item?.age }}</td>
+            <td>
+                <span class="option-link" (click)="viewDetail(item.id)">查看</span>
+            </td>
+        </tr>
+    </tbody>
+</unit-table>

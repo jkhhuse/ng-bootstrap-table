@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'unit-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
@@ -20,7 +20,4 @@ export class AppComponent {
   pageSize = 10;
   page = 1;
 
-  pageChanged() {
-    
-  }
 }
