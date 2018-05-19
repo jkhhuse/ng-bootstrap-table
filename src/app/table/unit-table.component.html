@@ -1,25 +1,26 @@
+<ng-template #tableNoResultTemplate>
+    <tbody *ngIf="(dataSet.length==0)">
+        <tr>
+            <td class="unit-table-no-result" [attr.colspan]="listOfUnitThComponent?.length">
+                <span *ngIf="!nzNoResult">数据为空...</span>
+                <ng-container *ngIf="nzNoResult">
+                    <ng-container *ngIf="isNoResultString; else noResultTemplate">{{ nzNoResult }}</ng-container>
+                    <ng-template #noResultTemplate>
+                        <ng-template [ngTemplateOutlet]="nzNoResult"></ng-template>
+                    </ng-template>
+                </ng-container>
+            </td>
+        </tr>
+    </tbody>
+</ng-template>
 <ng-template #tableInnerTemplate>
     <div #tableBodyElement>
         <table class="table table-striped table-border">
             <ng-content></ng-content>
-            <!-- <tbody *ngIf="!historyDetection?.result?.checkResultList || !historyDetection?.result?.checkResultList[0]">
-              <tr>
-                  <td colspan="5" class="text-center">
-                      查询结果为空...
-                  </td>
-              </tr>
-          </tbody> -->
+            <ng-template [ngTemplateOutlet]="tableNoResultTemplate"></ng-template>
         </table>
     </div>
-    <!-- <div class="ant-table-placeholder" *ngIf="(data.length==0)&&!nzLoading">
-        <span *ngIf="!nzNoResult">{{ 'Table.emptyText' | nzI18n }}</span>
-        <ng-container *ngIf="nzNoResult">
-            <ng-container *ngIf="isNoResultString; else noResultTemplate">{{ nzNoResult }}</ng-container>
-            <ng-template #noResultTemplate>
-                <ng-template [ngTemplateOutlet]="nzNoResult"></ng-template>
-            </ng-template>
-        </ng-container>
-    </div> -->
+
 </ng-template>
 <div class="unit-table-wrapper">
     <div class="input-group input-group-sm col-4">
@@ -32,7 +33,6 @@
     </div>
 
     <div class="unit-table">
-
         <ng-template [ngTemplateOutlet]="tableInnerTemplate"></ng-template>
     </div>
 
