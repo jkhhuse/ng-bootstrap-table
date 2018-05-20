@@ -13,6 +13,7 @@ export class UnitTableComponent implements OnInit {
   @Input() dataSet: any;
   @Input() pageSize: string;
   @Input() page: string;
+  @Input() unitLoading: boolean;
   @ContentChildren(UnitThComponent, { descendants: true }) listOfUnitThComponent: QueryList<UnitThComponent>;
   private _noResult: string | TemplateRef<void>;
   isNoResultString: boolean;
@@ -34,7 +35,5 @@ export class UnitTableComponent implements OnInit {
 
   pageChanged() {
   }
-
-  
 
 }
