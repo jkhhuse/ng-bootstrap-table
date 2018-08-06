@@ -4,9 +4,9 @@
             <th>
                 <input type="checkbox" #selected name="all" [checked]="allChecked" (change)="checkAll($event)" />
             </th>
-            <th unitShowSort>姓名</th>
-            <th unitShowSort>年龄</th>
-            <th unitShowSort>操作</th>
+            <th unitShowSort unitSortKey="name">姓名</th>
+            <th unitShowSort unitSortKey="age">年龄</th>
+            <th>操作</th>
         </tr>
     </thead>
     <tbody>
